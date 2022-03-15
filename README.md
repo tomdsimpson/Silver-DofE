@@ -27,14 +27,14 @@ When the buttons on the calculator are pressed the relevant value is concatenate
 
 This next block of four weeks was spent learning how to use and customise graph plotting with matplotlib with some file reading to get the data. To start with I installed the module and just tried getting a line and some point on the screen and understanding the syntax.
 
-![A simple line plot](plotting/simplePlot.png "A simple line plot")
+![A simple line plot](Graphing/simplePlot.png "A simple line plot")
 
 I wanted to apply this to some real world data and see the trends it presented. So using daily case changes for COVID-19, matplotlib and pandas produced this graph.
 
-![Covid Line Plot](plotting/covidPlot.png "Covid Line Plot")
+![Covid Line Plot](Graphing/covidPlot.png "Covid Line Plot")
 
 This shows the first three waves from last year. The main difficulty was manipulating the x-axis to ensure not to many data labels were shown at once and rotated 90 degrees. Over the next two weeks I worked on a program that would compare carbon dioxide emissions between two countries entered by the user.  The first show in blue, the second in red.
 
-![Polution trends](plotting/climatePlot.png "Polution trends")
+![Polution trends](Graphing/climatePlot.png "Polution trends")
 
 In this example The United Kingdom is shown in Blue and France shown in Red.
