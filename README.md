@@ -19,3 +19,11 @@ I took the time this week to consider a few different ideas and plan some projec
 Over the next four weeks I focused on a more developed UI for my calculator program with a constantly refreshed display showing the answer/calculation. When the buttons on the calculator are pressed the relevant value is concatenated onto the active string variable which is displayed. When the equals button is pressed the active string is evaluated, and the answer displayed.
 
 ## Weeks Beginning – 18/07/21 to 08/08/21 Time: 285mins
+
+This next block of four weeks was spent learning how to use and customise graph plotting with matplotlib with some file reading to get the data. To start with I installed the module and just tried getting a line and some point on the scree n and understanding the syntax.
+
+Then I wanted to apply this to some real world data and see the trends it presented. So using daily case changes for COVID-19, matplotlib and pandas produced this graph.
+
+This shows the first three waves from last year. The main difficulty was manipulating the x-axis to ensure not to many data labels were shown at once and rotated 90 degrees. Over the next two weeks I worked on a program that would compare carbon dioxide emissions between two countries entered by the user.  The first show in blue, the second in red.
+
+In this example The United Kingdom is shown in Blue and France shown in Red.
