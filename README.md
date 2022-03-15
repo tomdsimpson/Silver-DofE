@@ -38,3 +38,24 @@ This shows the first three waves from last year. The main difficulty was manipul
 ![Polution trends](Graphing/climatePlot.png "Polution trends")
 
 In this example The United Kingdom is shown in Blue and France shown in Red.
+
+## Weeks Beginning – 15/08/21 to 05/09/21 Time: 285mins
+
+For the final three weeks of Silver I decided to make a game, and to start with an attempt at the classic space invaders. After a quick bit of research I found that pygame was great for beginners making a game in python. I built it up in some key stages:
+
+- Building the game window
+- Adding the player and keyboard control
+- Implementing the enemies with a class
+- Making functions and scoring
+- Adding victory/loss
+- Adding sounds
+
+![Game on Start](Space_Invaders/start.png "The start of the game")
+
+This is the game after starting with the player at the bottom and rows of enemies beggining to move towards the bottom of the screen.
+
+## Conclusion
+
+Since finishing this I have continued to program regularly and have finished a large platformer and am currently working on a program to beat the wordle game! It has been great to learn some of the many different paths you can take with python.
+
+All of the program files can be found here!
