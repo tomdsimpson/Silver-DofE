@@ -14,9 +14,6 @@ import math as m
 
 
 
-
-
-
 # --- Making entity classes --- #
 class enemy_entity():
 
@@ -67,9 +64,6 @@ class enemy_entity():
 
 
 
-
-
-
 # Player Class
 class player_entity():
 
@@ -104,9 +98,6 @@ class player_entity():
 
 
 
-
-
-
 # Font class
 class font_entity():
 
@@ -127,9 +118,6 @@ class font_entity():
 
         display = self.font_object.render(self.font_text, True, (255, 255, 255))
         window.blit(display, (self.fontX, self.fontY))
-
-
-
 
 
 
@@ -191,26 +179,18 @@ class  laser_entity():
 
         
 
-
-
-
-
-
 # --- Making the game window --- #
 window = pg.display.set_mode((800, 600))
 background = pg.image.load("Images/background.png").convert_alpha()
 
 # Music
 mixer.music.load("sounds/background.wav")
-#mixer.music.play(-1) # -1 means loop
+mixer.music.play(-1) # -1 means loop
 
 # Title and Icon
 pg.display.set_caption("Space Invaders")
 icon = pg.image.load("Images/ufo.png")
 pg.display.set_icon(icon)
-
-
-
 
 
 
@@ -248,7 +228,6 @@ enemy_laser = laser_entity(False, "Images/enemy_bullet.png", 0, 1000, 1)
 
 
 
-
 # --- Defining Functions --- #
 def enemy_death():
            
@@ -271,9 +250,6 @@ def enemy_death():
     # Explosion sounds
     explosion_sound = mixer.Sound("sounds/explosion.wav")
     explosion_sound.play()
-
-
-
 
 
 
@@ -430,8 +406,6 @@ while running:
 
     if enemy_counter == 0:
         victory_display.display_font()
-
-
 
 
 
