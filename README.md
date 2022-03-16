@@ -7,8 +7,9 @@ My goal throughout DofE is to improve my ability to use python to solve problems
 ## Week Beginning – 07/06/20 Time: 60mins
 
 To begin I finished off my current programming project, a program and UI for encoding and decoding a Vigenère cipher given a keyword. The processing aspect of the program used the functions char() and ord() to shift letters a given amount determined by the keyword. Then using Tkinter I constructed a UI which allowed you to select a mode (Encode/Decode), the keyword and the target text.
+([Vigenère Cipher](https://en.wikipedia.org/wiki/Vigen%C3%A8re_cipher))
 
-[Vigenère Cipher](https://en.wikipedia.org/wiki/Vigen%C3%A8re_cipher)
+![The Vigenere Interface](Vigenere_Cipher/vigenereUI.png "Vigenere Interface")
 
 ## Week Beginning – 14/06/21 Time: 60mins
 
