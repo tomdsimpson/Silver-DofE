@@ -50,51 +50,59 @@ def game_phase():
             output[1][c] = 1
 
     display_output = [output[0], guess.upper()]
-    display(display_output)
 
-def display(output):
-
+    # --- Displaying --- #
+    global height
     colors = {"w":"grey", "g":"green", "y":"yellow"}
 
-    for x in range(len(output[0])):
-        label = tk.Label(text=output[1][x], width = 8, height = 3, background = colors[output[0][x]])
-        label.grid(row=3,column=x+1, pady=10)
+    for x in range(len(display_output[0])):
+        label = tk.Label(text=display_output[1][x], width = 8, height = 3, background = colors[display_output[0][x]])
+        label.grid(row=height,column=x+1, pady=8)
+    height += 1
 
-
+    if display_output[0] == ["g", "g", "g", "g", "g"]:
+        root.destroy()
+        root, inputSection = make_window()
 
 
 
 # --- Defining Window --- #
-titleFont = ('Helvetica bold',40)
-labelFont = ('Helvetica bold',20)
-textFont = ('Helvetica',15)
-    
-root = tk.Tk()
-root.geometry("490x600+1200+200")
-root.config(background="#f5f5f5")
-root.title("Wordle")
-root.iconphoto(False, tk.PhotoImage(file='./icon.png'))
+def make_window():
+    titleFont = ('Helvetica bold',40)
+    labelFont = ('Helvetica bold',20)
+    textFont = ('Helvetica',15)
+        
+    root = tk.Tk()
+    root.geometry("500x600+1200+200")
+    root.config(background="#f5f5f5")
+    root.title("Wordle")
+    root.iconphoto(False, tk.PhotoImage(file='./icon.png'))
 
-# Title Label
-titleLabel = tk.Label(root, width = 15, height = 1, text="Wordle", font=titleFont, background="#f5f5f5")
-titleLabel.grid(row=1,column=1, columnspan=5)
+    # Title Label
+    titleLabel = tk.Label(root, width = 15, height = 1, text="Wordle", font=titleFont, background="#f5f5f5")
+    titleLabel.grid(row=1,column=1, columnspan=5)
 
-#Text Input Section
-inputSection = tk.Text(root, width = 15, height = 1, font=labelFont)
-inputSection.grid(row=2, column=1, columnspan=3, pady=10)
+    #Text Input Section
+    inputSection = tk.Text(root, width = 15, height = 1, font=labelFont)
+    inputSection.grid(row=2, column=1, columnspan=3, pady=10)
 
-#Submit Button
-submitButton = tk.Button(root, width = 10, height = 1, font=labelFont, text="Submit", command=game_phase)
-submitButton.grid(row=2, column=4, columnspan=2, pady=10)
+    #Submit Button
+    submitButton = tk.Button(root, width = 10, height = 1, font=labelFont, text="Submit", command=game_phase)
+    submitButton.grid(row=2, column=4, columnspan=2, pady=10)
 
-
+    return root, inputSection
 
 # -- Main code --- #
 answers = read_answers()
 
-# Game loop
+# Game
+
 global answer
+global height
+height = 3
 answer = answers[r.randint(0, len(answers)-1)]
+
+root, inputSection = make_window()
 root.mainloop()
 
 
