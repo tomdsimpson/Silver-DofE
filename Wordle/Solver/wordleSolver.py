@@ -5,14 +5,14 @@
 import json
 
 
-# Reading in guesses 
-with open("./guesses.txt") as file:
+# Reading in guesses
+with open("guesses.txt") as file:
     guesses = []
     for line in file:
         guesses.append(line.strip())
 
 # Read in fequency map
-with open("./freq_map.json", "r") as file:
+with open("freq_map.json", "r") as file:
     freq_map = json.load(file)
 
 
@@ -114,25 +114,29 @@ def trim_list(word_list, guess, pattern):
 
 
 
-# Looping for up to 6 guesses
+
+
+
+
+
 for x in range(6):
-
-    # Finding most common letters
     freq = find_frequencies(guesses)
-
-    # Finding best word match
+    #print(freq)
     word_scores = wordScore(guesses, freq, freq_map)
     print(min(word_scores, key=word_scores.get))
-
-    # Gaining Data
     guess = input("What was your guess?   ")
     pattern = input("What was your pattern?   ")
-
-    # Editing possible answer list
     new_guesses = trim_list(guesses, guess, pattern)
     guesses = new_guesses
 
-    # If one possible remaining answer condition
     if len(guesses) == 1:
         print(f"Win: {guesses[0]}")
         break
+    #print(new_guesses)
+
+
+# Each iteration of this up to six you need to trim word list
+
+
+#new_list = trim_list(guesses, "cooky", "wwyww")
+#print(new_list)
