@@ -5,14 +5,14 @@
 import json
 
 
-# Reading in guesses
-with open("guesses.txt") as file:
+# Reading in guesses 
+with open("./guesses.txt") as file:
     guesses = []
     for line in file:
         guesses.append(line.strip())
 
 # Read in fequency map
-with open("freq_map.json", "r") as file:
+with open("./freq_map.json", "r") as file:
     freq_map = json.load(file)
 
 
