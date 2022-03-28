@@ -64,7 +64,7 @@ class wordleUI:
         self.submitButton = tk.Button(frame, width = 8, height = 1, font=self.labelFont, text="Submit", command=self.game_phase)
         self.submitButton.grid(row=2, column=4, columnspan=2, pady=10)
 
-        self.retartButton = tk.Button(controls, text="Play", command=self.restartGame, width = 8, height = 1, font=self.labelFont)
+        self.retartButton = tk.Button(controls, text="Replay", command=self.restartGame, width = 8, height = 1, font=self.labelFont)
         self.retartButton.grid(row=1,column=1,padx=5,pady=5)
 
         self.quitButton = tk.Button(controls, text="Quit", command=self.quitGame, width = 8, height = 1, font=self.labelFont)
