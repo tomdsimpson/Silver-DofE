@@ -5,7 +5,8 @@
 import tkinter as tk
 import random as r
 
-# --- Defining Methods --- #
+
+
 # Generating possible answer list
 def read_answers():
 
@@ -16,28 +17,30 @@ def read_answers():
     return answers
 
 
-
 # --- Defining Window --- #
 class wordleUI:
 
-    def __init__(self, master):
+    def __init__(self):
+
+        self.root = tk.Tk()
+        master = self.root
 
         # Initialising Gameplay stuff
         self.answers = read_answers()
         self.answer = self.answers[r.randint(0, len(self.answers)-1)]
         self.height = 1
-
-        # Troubleshoot
-        print(self.answer)
+        self.gameState = True
+        self.colors = {"w":"#777777", "g":"#3d9929", "y":"#e4dc2e"}
 
         # Initialising Tk stuff
         self.titleFont = ('Helvetica bold',40)
         self.labelFont = ('Helvetica bold',20)
+        self.displayFont = ('Helvetica bold',35)
 
-        master.geometry("540x600+1200+200")
+        master.geometry("540x650+1200+200")
         master.config(background="#eeeeee")
         master.title("Wordle")
-        #master.iconphoto(False, tk.PhotoImage(file='./icon.png'))
+        master.iconphoto(False, tk.PhotoImage(file='./icon.png'))
 
         frame = tk.Frame(master)
         frame.grid(row=1,column=1)
@@ -47,24 +50,45 @@ class wordleUI:
         self.feedback.grid(row=2,column=1)
         self.feedback.config(background="#eeeeee")
 
+        controls = tk.Frame(master)
+        controls.grid(row=3,column=1)
+        controls.config(background="#eeeeee")
+
         # Making widgets
         self.titleLabel = tk.Label(frame, width = 15, height = 1, text="Wordle", font=self.titleFont, background="#eeeeee")
         self.titleLabel.grid(row=1,column=1,columnspan=5)
 
-        self.inputSection = tk.Text(frame, width = 15, height = 1, font=self.labelFont)
-        self.inputSection.grid(row=2, column=1, columnspan=3, pady=10)
+        self.inputSection = tk.Text(frame, width = 10, height = 1, font=("Helvetica bold",30))
+        self.inputSection.grid(row=2, column=1, columnspan=3, pady=10, padx=5)
 
-        self.submitButton = tk.Button(frame, width = 10, height = 1, font=self.labelFont, text="Submit", command=self.game_phase)
+        self.submitButton = tk.Button(frame, width = 8, height = 1, font=self.labelFont, text="Submit", command=self.game_phase)
         self.submitButton.grid(row=2, column=4, columnspan=2, pady=10)
 
+        self.retartButton = tk.Button(controls, text="Play", command=self.restartGame, width = 8, height = 1, font=self.labelFont)
+        self.retartButton.grid(row=1,column=1,padx=5,pady=5)
+
+        self.quitButton = tk.Button(controls, text="Quit", command=self.quitGame, width = 8, height = 1, font=self.labelFont)
+        self.quitButton.grid(row=1,column=2,padx=5,pady=5)
+
+        # Filler
+        for x in range(6):
+            spacer = tk.Label(self.feedback, text="", background="#eeeeee", font=self.displayFont)
+            spacer.grid(row=x+1,column=1,pady=8)
+
+        # Running window
+        self.root.mainloop()
 
 
     # Game Functionality
     def game_phase(self):
 
-        guess = (self.inputSection.get(1.0, "end-1c")).lower()
+        # Checking if won or invalid input
+        if self.gameState != "win":self.gameState = "play"
+        self.validateInput()
+        if self.gameState != "play":return "VOID"
 
-        # Generating answer pattern
+        # Getting guess and check frame
+        guess = (self.inputSection.get(1.0, "end-1c")).lower()
         output = [["", "", "", "", ""], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0]] # Pattern LetterUsed AnswerLetterUsed
 
         #Green pass
@@ -89,57 +113,42 @@ class wordleUI:
                 output[0][c] = "w"
                 output[1][c] = 1
 
+        # Extracting needed data
         display_output = [output[0], guess.upper()]
 
         # --- Displaying --- #
-        colors = {"w":"grey", "g":"green", "y":"yellow"}
-
         for x in range(len(display_output[0])):
-            label = tk.Label(self.feedback, text=display_output[1][x], width = 8, height = 3, background = colors[display_output[0][x]])
+            label = tk.Label(self.feedback, text=display_output[1][x], width = 2, height = 1, background = self.colors[display_output[0][x]], fg="#ffffff", font=self.displayFont)
             label.grid(row=self.height,column=x+1,pady=8,padx=5)
         self.height += 1
 
+        if output[0] == ["g", "g", "g", "g", "g"]:
+            self.gameState = "win"
 
 
-# --- Utility Window --- #
-class utilityWindow:
-
-    def __init__(self, master, score):
-
-        self.root = ""
-
-        # Making widgets
-        self.frame = tk.Frame(master)
-        self.frame.pack()
-
-        #self.scoreLabel = tk.Label(self.frame, text=f"You made {score} guesses!")
-        #self.scoreLabel.pack()
-
-        self.retartButton = tk.Button(self.frame, text="Play", command=self.restartGame)
-        self.retartButton.pack(side=tk.LEFT)
-
-        self.quitButton = tk.Button(self.frame, text="Quit", command=self.quitGame)
-        self.quitButton.pack(side=tk.RIGHT)
-
+    # Control button functions
     def quitGame(self):
         self.root.destroy()
-        util.destroy()
     
     def restartGame(self):
+        self.root.destroy()
+        wordle = wordleUI()
 
-        if self.root != "":
-            self.root.destroy()
+    def validateInput(self):
 
-        self.root = tk.Tk()
-        wordle = wordleUI(self.root)
-        self.root.mainloop()
+        guess = (self.inputSection.get(1.0, "end-1c")).lower()
+        if self.height == 7:
+            self.gameState="invalid"
+        if len(guess) != 5:
+            self.gameState="invalid"
+        if guess not in self.answers:
+            self.gameState="invalid"
 
+        
 
 
 # -- Main code --- #
-util = tk.Tk()
-utility = utilityWindow(util, 1)
-util.mainloop()
+wordle = wordleUI()
 
 
 
